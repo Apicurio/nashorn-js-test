@@ -43,9 +43,10 @@ public class NashornTest {
     @Test
     public void test() throws Exception {
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+        debug("Loaded Nashorn Engine from: " + engine.getClass().getResource("/jdk/nashorn/api/scripting/NashornScriptEngine.class"));
         URL consoleJsUrl = NashornTest.class.getClassLoader().getResource("js-lib/core-console.js");
         URL libraryJsUrl = NashornTest.class.getClassLoader().getResource("js-lib/core-library.js");
-
+        
         debug("Nashorn JS engine created.");
 
         // Load the JS libraries into the engine
@@ -57,17 +58,18 @@ public class NashornTest {
         final Invocable invocable = (Invocable) engine;
         String inputDoc = IOUtils.toString(getClass().getResource("__begin.json"));
         
-        debug("Input doc loaded: " + inputDoc);
+        debug("Input doc loaded.");
+//        debug("Input doc loaded: " + inputDoc);
 
         debug("======================================================");
         debug("Doing Test Now!");
         debug("======================================================");
-        String mutatedDocument = invocable.invokeFunction("parseDocument", inputDoc).toString();
+        /*String mutatedDocument = */invocable.invokeFunction("parseDocument", inputDoc).toString();
         
         debug("======================================================");
-        debug("Test passed with output document:");
+        debug("Test passed.");
         debug("======================================================");
-        debug(mutatedDocument);
+        //debug(mutatedDocument);
     }
 
 }
